@@ -272,7 +272,7 @@ export default function InterviewStudio({ onScoreCalculated }) {
                   <div>
                     <span className="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider">Overall Behavior Score</span>
                     <div className="text-3xl font-extrabold text-[#635BFF] tracking-tight mt-0.5">
-                      {result.behaviour_score}%
+                      {Number(result.behaviour_score).toFixed(2)}%
                     </div>
                   </div>
                   <span className="text-xs font-extrabold px-3 py-1.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
