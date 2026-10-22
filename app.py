@@ -9,6 +9,7 @@ import sys
 import re
 import sqlite3
 import pickle
+import jwt
 import traceback
 from pathlib import Path
 from datetime import datetime, timedelta, timezone
