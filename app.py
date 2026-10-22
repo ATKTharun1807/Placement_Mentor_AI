@@ -5,6 +5,7 @@ Phase 2: Interview Behaviour Analysis (YOLO26-Pose + Behaviour Classifier)
 """
 
 import os
+import sys
 import re
 import sqlite3
 import pickle
@@ -12,6 +13,13 @@ import traceback
 from pathlib import Path
 from datetime import datetime, timedelta, timezone
 from functools import wraps
+
+if sys.platform == 'win32':
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+        sys.stderr.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
 
 import jwt
 from flask import (

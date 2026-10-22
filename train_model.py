@@ -3,6 +3,15 @@ Generate a comprehensive, realistic Placement Readiness Dataset
 and train the Random Forest Regressor model.
 """
 
+import sys
+
+if sys.platform == 'win32':
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+        sys.stderr.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
+
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
