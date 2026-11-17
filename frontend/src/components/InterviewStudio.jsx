@@ -4,6 +4,7 @@ import PageHeader from './ui/PageHeader';
 import ProgressBar from './ui/ProgressBar';
 import { Video, Image as ImageIcon, UploadCloud, Loader2, Activity, Eye, AlertCircle, Sparkles, CheckCircle2, FileText, Trash2, ArrowRight } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import API_URL from '../config';
 
 export default function InterviewStudio({ onScoreCalculated }) {
   const { authHeaders } = useAuth();
@@ -46,7 +47,7 @@ export default function InterviewStudio({ onScoreCalculated }) {
     const formData = new FormData();
     formData.append('file', file);
 
-    const endpoint = activeMode === 'image' ? '/analyze-image' : '/analyze-video';
+    const endpoint = `${API_URL}${activeMode === 'image' ? '/analyze-image' : '/analyze-video'}`;
 
     try {
       const response = await fetch(endpoint, {

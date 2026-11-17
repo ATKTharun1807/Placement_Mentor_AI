@@ -5,6 +5,7 @@ import SliderInput from './ui/SliderInput';
 import ProgressBar from './ui/ProgressBar';
 import { BrainCircuit, Sparkles, AlertTriangle, CheckCircle2, BookOpen, UserCheck, ArrowRight, Loader2 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import API_URL from '../config';
 
 export default function PlacementPredictor({ onScoreCalculated }) {
   const { authHeaders } = useAuth();
@@ -65,7 +66,7 @@ export default function PlacementPredictor({ onScoreCalculated }) {
     setError(null);
 
     try {
-      const response = await fetch('/predict', {
+      const response = await fetch(`${API_URL}/predict`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
