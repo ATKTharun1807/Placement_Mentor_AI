@@ -41,9 +41,9 @@ export default function InterviewStudio({ onScoreCalculated }) {
       return;
     }
 
-    // Size limit warning: Render Free tier has limited memory for video processing
-    if (activeMode === 'video' && file.size > 25 * 1024 * 1024) {
-      setError('Video is larger than 25 MB. Please use a shorter clip (under 15-20 seconds) for cloud analysis.');
+    // Allow videos up to 100 MB
+    if (activeMode === 'video' && file.size > 100 * 1024 * 1024) {
+      setError('Video is larger than 100 MB. Please upload a video under 100 MB.');
       return;
     }
 
