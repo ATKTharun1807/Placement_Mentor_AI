@@ -180,7 +180,7 @@ def get_video_analyzer():
         from cv_module import VideoBehaviourAnalyzer
         custom_model = os.path.join(os.path.dirname(__file__), 'cv_module', 'models', 'best.pt')
         model_path = custom_model if os.path.exists(custom_model) else None
-        _video_analyzer = VideoBehaviourAnalyzer(model_path=model_path, fps_target=5)
+        _video_analyzer = VideoBehaviourAnalyzer(model_path=model_path, fps_target=2)
         print("✅ Video Behaviour Analyzer loaded")
     return _video_analyzer
 

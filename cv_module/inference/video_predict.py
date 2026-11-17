@@ -20,11 +20,11 @@ from .behaviour_classifier import BehaviourClassifier, get_behaviour_name
 class VideoBehaviourAnalyzer:
     """Analyze interview behaviour from video"""
     
-    def __init__(self, model_path: str = None, fps_target: int = 5):
+    def __init__(self, model_path: str = None, fps_target: int = 2):
         """
         Initialize with YOLO pose model
         model_path: path to YOLO pose model (best.pt)
-        fps_target: process video at this FPS (default 5 for efficiency)
+        fps_target: process video at this FPS (default 2 for high speed & accuracy)
         """
         if model_path is None:
             self.model = YOLO('yolo26l-pose.pt')
@@ -34,9 +34,9 @@ class VideoBehaviourAnalyzer:
         self.pose_processor = PoseProcessor(confidence_threshold=0.5)
         self.behaviour_classifier = BehaviourClassifier()
         self.fps_target = fps_target
-        self.sliding_window_size = 10  # Frames for temporal smoothing
+        self.sliding_window_size = 6  # Frames for temporal smoothing
     
-    def analyze_video(self, video_path: str, max_frames: Optional[int] = None) -> Dict:
+    def analyze_video(self, video_path: str, max_frames: Optional[int] = 50) -> Dict:
         """
         Analyze interview behaviour from video
         
