@@ -38,8 +38,8 @@ import pandas as pd
 # App Configuration
 # ─────────────────────────────────────────────
 app = Flask(__name__)
-CORS(app, supports_credentials=True)
-app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024  # 100 MB max upload
+CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
+app.config['MAX_CONTENT_LENGTH'] = 200 * 1024 * 1024  # 200 MB max upload
 app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET', 'placement-mentor-ai-secret-key-2026')
 app.config['JWT_EXPIRATION_HOURS'] = 24
 
