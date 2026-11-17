@@ -35,6 +35,9 @@ RUN pip install --no-cache-dir --upgrade pip && \
 # Copy project files
 COPY . .
 
+# Generate model.pkl if not present
+RUN python train_model.py
+
 # Create necessary directories
 RUN mkdir -p uploads cv_module/outputs cv_module/models
 
