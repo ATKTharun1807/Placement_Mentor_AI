@@ -41,6 +41,12 @@ export default function InterviewStudio({ onScoreCalculated }) {
       return;
     }
 
+    // Size limit warning: Render Free tier has limited memory for video processing
+    if (activeMode === 'video' && file.size > 25 * 1024 * 1024) {
+      setError('Video is larger than 25 MB. Please use a shorter clip (under 15-20 seconds) for cloud analysis.');
+      return;
+    }
+
     setLoading(true);
     setError(null);
 
@@ -58,7 +64,13 @@ export default function InterviewStudio({ onScoreCalculated }) {
         body: formData,
       });
 
-      const data = await response.json();
+      let data;
+      const text = await response.text();
+      try {
+        data = JSON.parse(text);
+      } catch {
+        throw new Error(text || `Server error (${response.status})`);
+      }
 
       if (!response.ok || data.error) {
         throw new Error(data.error || 'Failed to analyze media');
@@ -70,7 +82,11 @@ export default function InterviewStudio({ onScoreCalculated }) {
       }
     } catch (err) {
       console.error(err);
-      setError(err.message || 'Analysis failed. Please try again.');
+      if (err.name === 'TypeError' && err.message.includes('fetch')) {
+        setError('Connection timed out or server restarted. Please try again with a shorter video clip.');
+      } else {
+        setError(err.message || 'Analysis failed. Please try again.');
+      }
     } finally {
       setLoading(false);
     }
