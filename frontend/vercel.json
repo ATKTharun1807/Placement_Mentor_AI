@@ -1,0 +1,33 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://placement-mentor-ai.onrender.com/api/:path*"
+    },
+    {
+      "source": "/predict",
+      "destination": "https://placement-mentor-ai.onrender.com/predict"
+    },
+    {
+      "source": "/analyze-image",
+      "destination": "https://placement-mentor-ai.onrender.com/analyze-image"
+    },
+    {
+      "source": "/analyze-video",
+      "destination": "https://placement-mentor-ai.onrender.com/analyze-video"
+    },
+    {
+      "source": "/calculate-final-score",
+      "destination": "https://placement-mentor-ai.onrender.com/calculate-final-score"
+    },
+    {
+      "source": "/outputs/:path*",
+      "destination": "https://placement-mentor-ai.onrender.com/outputs/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
+
